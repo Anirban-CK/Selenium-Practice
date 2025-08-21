@@ -1,0 +1,115 @@
+Day-27
+-----------
+wait methods
+------------
+
+Synchronization
+
+NoSuchElementException - Element is not present on the page. Synchronization.
+ElementNotFoundException - Locator is in-correct
+
+
+
+Thread.sleep(time in ms)
+--------
+Adv:
+----
+1) easy to use
+
+DisAdv
+-------------
+1) if the time is not suffitient then you will get exception
+2) it will wait for maximum time out. this will reduce the performace script.
+3) multiple times 
+
+
+implicit wait
+-----------
+driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+NOTE - 
+1. Untill the element is visible, Once the element is visible then it'll start executing the next one
+2. It'll be working over all the elements untill the driver.close()/quit()
+3. The implicit wait will wait maximum of 10 seconds as per the above example then it'll get failed, if the element is not available within 10 
+4. Default timeout of implicit wait is 0 second
+
+Adv:
+1) single time/one statement
+2) it will not wait till maximum time if the element is availble
+3) Applicable for all the elements
+4) easy to use
+
+Disadvantge:
+1) if the time is not suffitient then you will get exception
+
+
+explicit wait
+-------------
+works based on the time and condition
+
+declaration
+use
+
+points
+---------
+1) Conditional based, it will work more effectively.
+2) finding element is inclusive
+3) it will wait for condition to be true, then consider the time
+4) we need to write multiple statements for multiple elements 
+
+conditions
+--------
+alertIsPresent()
+elementSelectionStateToBe()
+elementToBeClickable()
+elementToBeSelected()
+frameToBeAvaliableAndSwitchToIt()
+presenceOfAllElementsLocatedBy()
+presenceOfElementLocated()
+textToBePresentInElement()
+textToBePresentInElementLocated()
+textToBePresentInElementValue()
+titleIs()
+titleContains()
+visibilityOf()
+visibilityOfAllElements()
+visibilityOfAllElementsLocatedBy()
+visibilityOfElementLocated()
+
+
+Fluent wait
+--------------
+ Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+       .withTimeout(Duration.ofSeconds(time))
+       .pollingEvery(Duration.ofSeconds(time))
+       .ignoring(NoSuchElementException.class);
+
+
+   WebElement foo = wait.until(new Function<WebDriver, WebElement>() {
+     public WebElement apply(WebDriver driver) {
+       return driver.findElement(By.id("foo"));
+     }
+   });
+
+
+
+
+driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
+
+
+If we use two types of wait in our code, it'll run parrellay
+
+Implicit Explicit
+10 Sec   10 Sec  
+
+So total will be 10 sec not 20, as this is running parellally not serially
+
+
+
+
+
+
+
+
+
+

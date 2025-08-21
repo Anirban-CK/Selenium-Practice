@@ -1,7 +1,5 @@
 package base;
 
-import java.time.Duration;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.PageLoadStrategy;
@@ -12,9 +10,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.github.javafaker.Faker;
 
 public class Base {
-    protected WebDriver driver;
-    protected WebDriverWait mywait;
-    protected Faker faker;
+    public WebDriver driver;
+    public WebDriverWait mywait;
+    public Faker faker;
 
     @BeforeEach
     public void setup() {
